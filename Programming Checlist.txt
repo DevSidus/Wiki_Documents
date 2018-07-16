@@ -1,0 +1,139 @@
+New Card
+1- Config.h: Set WiFi and IP Settings
+#define		WIFI_SSID						"YANIKS HOUSE"
+#define		WIFI_PASS						"YanikTurkiye06"
+#define		DEFAULT_GROUND_STATION_IP		"192.168.0.11"
+
+or
+
+#define		WIFI_SSID						"iPhone"
+#define		WIFI_PASS						"YanikTurkiye06"
+#define		DEFAULT_GROUND_STATION_IP		"172.20.10.4"
+
+
+///////////////////////////////////////////////////////////////////////
+2- Config.h: Set the serial number of FCB
+--------------------------------------------------------------------
+2-1: Gyro Offset Values
+
+/// Offset FCB3.1 001 (Old Card - New Frame)
+	mpu.setXAccelOffset(1671);
+	mpu.setYAccelOffset(-287);
+	mpu.setZAccelOffset(703);
+	mpu.setXGyroOffset(1);
+	mpu.setYGyroOffset(-73);
+	mpu.setZGyroOffset(-14);
+
+
+/// Offset FCB3.1 002 (New Card - Spare)
+	mpu.setXAccelOffset(TBD);
+	mpu.setYAccelOffset(TBD);
+	mpu.setZAccelOffset(TBD);
+	mpu.setXGyroOffset(TBD);
+	mpu.setYGyroOffset(TBD);
+	mpu.setZGyroOffset(TBD);
+
+
+/// Offset FCB3.2 001 (New Card)
+	mpu.setXAccelOffset(823);
+	mpu.setYAccelOffset(-821);
+	mpu.setZAccelOffset(1769);
+	mpu.setXGyroOffset(-51);
+	mpu.setYGyroOffset(70);
+	mpu.setZGyroOffset(-28);
+
+
+--------------------------------------------------------------------
+2-2 Compass Offset Values
+
+/// Offset FCB3.1 001 (Old Card - New Frame)
+	compassHdgXoffset = -47.50;
+	compassHdgYoffset = 196.50;
+	compassHdgZoffset = -124.50;
+	compassHdgXrange = 1065.00;
+	compassHdgYrange = 1017.00;
+	compassHdgZrange = 1007.00;
+
+
+/// Offset FCB3.1 002 (New Card - Spare)
+	compassHdgXoffset = TBD;
+	compassHdgYoffset = TBD;
+	compassHdgZoffset = TBD;
+	compassHdgXrange = TBD;
+	compassHdgYrange = TBD;
+	compassHdgZrange = TBD;
+
+
+/// Offset FCB3.2 001 (New Card)
+	compassHdgXoffset = 43.00;
+	compassHdgYoffset = 79.00;
+	compassHdgZoffset = 5.00;
+	compassHdgXrange = 834.00;
+	compassHdgYrange = 672.00;
+	compassHdgZrange = 1022.00;
+
+--------------------------------------------------------------------
+///////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////
+3- Set PID Gains under Config.h
+(Last Parameters)
+
+#define		PID_RATE_PITCH_KP			0.90 or (0.70)
+#define		PID_RATE_PITCH_KI			0.0 or (0.05)
+#define		PID_RATE_PITCH_KD			0.06 or (0.05)
+
+#define		PID_ANGLE_PITCH_KP			3.0 or (2.5)
+#define		PID_ANGLE_PITCH_KI			0.0
+#define		PID_ANGLE_PITCH_KD			0.06 or (0.08)
+
+#define		PID_RATE_ROLL_KP			0.90 or (0.70)
+#define		PID_RATE_ROLL_KI			0.0 or (0.05)
+#define		PID_RATE_ROLL_KD			0.06 or (0.05)
+
+#define		PID_ANGLE_ROLL_KP			3.0 or (2.5)
+#define		PID_ANGLE_ROLL_KI			0.0
+#define		PID_ANGLE_ROLL_KD			0.06 or (0.08)
+
+--------------------------------------------------------------------
+
+#define		PID_POS_ALT_KP			40 // May be tuned better
+#define		PID_POS_ALT_KI			0.0
+#define		PID_POS_ALT_KD			0.0 // May be tuned better
+#define		PID_POS_ALT_OUTMIN		-250
+#define		PID_POS_ALT_OUTMAX		250
+
+
+#define		PID_VEL_ALT_KP			3.0 // May be tuned better
+#define		PID_VEL_ALT_KI			0.0
+#define		PID_VEL_ALT_KD			0.05 // May be tuned better
+#define		PID_VEL_ALT_OUTMIN		-250
+#define		PID_VEL_ALT_OUTMAX		250
+
+--------------------------------------------------------------------
+
+
+///////////////////////////////////////////////////////////////////////
+
+4- Set Drone Weight under Config.h
+#define		DRONE_WEIGHT					1000.0
+
+
+
+
+6- MPU_GRAVITY_MEASUREMENT_IN_BITS should be defined at Local_MPU6050_MotionApps20.h
+/// For FCB 1 (Old Drone)
+#define		MPU_GRAVITY_MEASUREMENT_IN_BITS		8500.0
+
+/// For FCB 2 (New Drone)
+#define		MPU_GRAVITY_MEASUREMENT_IN_BITS		8250.0
+
+///////////////////////////////////////////////////////////////////////
+
+Old Card
+1- Config_CoWorker.h: Set WiFi and IP Settings
+2- Config_CoWorker.h: Set Inverse IMU Definition
+3- Config.h: Set FCB Version
+4- Config.h: Set PID Gains
+5- Drone_CoWorker.ino: Set Gyro Offset Values
+6- Drone_Flight_Controller.ino: Change PID Process Set Values
